@@ -66,7 +66,7 @@ fun GameItem(
                         imageVector = Icons.Rounded.Star,
                         contentDescription = null,
                         tint = Color.Yellow,
-                        modifier = Modifier.size(22.dp)
+                        modifier = Modifier.size(18.dp)
                     )
 
                     Spacer(modifier = Modifier.width(4.dp))

@@ -75,9 +75,12 @@ fun ListScreen(
         Box(
             modifier = Modifier.fillMaxSize(),
         ) {
+            // Initial loading from empty state
             if (refreshState is LoadState.Loading && games.itemCount == 0) {
                 CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
-            } else if (refreshState is LoadState.Error && games.itemCount == 0) {
+            } 
+            // Initial error with no data
+            else if (refreshState is LoadState.Error && games.itemCount == 0) {
                 Column(
                     modifier = Modifier.align(Alignment.Center),
                     horizontalAlignment = Alignment.CenterHorizontally,
@@ -91,12 +94,16 @@ fun ListScreen(
                         Text("Retry")
                     }
                 }
-            } else if (games.itemCount == 0 && refreshState is LoadState.NotLoading) {
+            } 
+            // Empty results
+            else if (games.itemCount == 0 && refreshState is LoadState.NotLoading) {
                 Text(
                     text = "No games found",
                     modifier = Modifier.align(Alignment.Center)
                 )
-            } else {
+            } 
+            // Data list (including offline cached data)
+            else {
                 LazyVerticalGrid(
                     columns = GridCells.Adaptive(150.dp),
                     modifier = Modifier.fillMaxSize(),
@@ -118,6 +125,7 @@ fun ListScreen(
                         }
                     }
 
+                    // Loading more spinner at the bottom
                     if (appendState is LoadState.Loading) {
                         item(span = { GridItemSpan(maxLineSpan) }) {
                             Box(
@@ -130,6 +138,8 @@ fun ListScreen(
                             }
                         }
                     }
+                    
+                    // Pagination error retry at the bottom
                     if (appendState is LoadState.Error) {
                         item(span = { GridItemSpan(maxLineSpan) }) {
                             Button(

@@ -8,6 +8,7 @@ import androidx.paging.filter
 import androidx.paging.map
 import com.example.bostatask.ui.screens.list.model.GameUiModel
 import com.example.domain.usecase.GetGamesUseCase
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -21,12 +22,13 @@ class ListViewModel(
     private val getGamesUseCase: GetGamesUseCase
 ) : ViewModel() {
 
-    private val _selectedSlug = MutableStateFlow("action")
+    private val _selectedSlug = MutableStateFlow("adventure")
     val selectedSlug = _selectedSlug.asStateFlow()
 
     private val _searchQuery = MutableStateFlow("")
     val searchQuery = _searchQuery.asStateFlow()
 
+    @OptIn(ExperimentalCoroutinesApi::class)
     val gamesPagingData: StateFlow<PagingData<GameUiModel>> = combine(
         _selectedSlug,
         _searchQuery
@@ -38,9 +40,9 @@ class ListViewModel(
                 pagingData.map { result ->
                     GameUiModel(
                         id = result.id ?: 0,
-                        name = result.name ?: "",
-                        image = result.backgroundImage ?: "",
-                        rating = result.rating ?: 0.0
+                        name = result.name ?: "Unknown",
+                        image = result.backgroundImage,
+                        rating = result.rating?.toString() ?: "0.0"
                     )
                 }.filter { game ->
                     query.isEmpty() || game.name.contains(query, ignoreCase = true)
