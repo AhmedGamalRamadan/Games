@@ -40,5 +40,5 @@ val dataModule = module {
         ).fallbackToDestructiveMigration().build()
     }
 
-    single<GameRepository> { GameRepositoryImpl(get(), get(), BuildConfig.API_KEY) }
+    single<GameRepository> { GameRepositoryImpl(get(), get(), "5fe005cd104f42e2bbba7a59936da872") }
 }
