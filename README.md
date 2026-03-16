@@ -6,16 +6,28 @@ An Android app that displays games using the [RAWG Video Games Database API](htt
 
 ## 🛠 Tech Stack
 
-- **Kotlin** – main programming language  
-- **Jetpack Compose** – declarative UI  
-- **MVVM** – architecture pattern  
-- **Koin** – dependency injection  
-- **Retrofit** – networking  
-- **Navigation Compose** – app navigation  
-- **Safe Args** – type-safe navigation parameters  
-- **Coroutines + Flow** – asynchronous data streams
+- **Kotlin** – main programming language.  
+- **Jetpack Compose** – declarative UI.  
+- **MVVM** – architecture pattern.  
+- **Koin** – dependency injection.
+- **Retrofit** – networking.
+- **Navigation Compose** – app navigation.
+- **Safe Args** – type-safe navigation parameters.
+- **Coroutines + Flow** – asynchronous data streams.
+- **Room + Offline-First Approach** – local database caching with Flow to provide offline support, reduce network calls, and serve as a single source of truth.  
 - **JUnit & MockK**: For unit testing and mocking.
 
+---
+### 📦 Offline Support (Room + Offline First)
+
+The app implements an **offline-first architecture** using **Room database**:
+
+**Flow:**
+1. Load data from Room database (local cache).  
+2. If data exists → display immediately.  
+3. Fetch latest data from RAWG API.  
+4. Save updated data to Room.  
+5. UI updates automatically via **Flow**. 
 ---
 
 ## 📱 Features
