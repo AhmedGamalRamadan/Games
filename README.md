@@ -88,6 +88,7 @@ The app implements an **offline-first architecture** using **Room database**:
   </tr>
 </table>
 
+---
 ##  Feature Checklist
 
 ### Game List Screen
@@ -109,17 +110,22 @@ The app implements an **offline-first architecture** using **Room database**:
 - ✅ Display **release date**
 - ✅ Display **full description**
 
-### Project & Documentation
-- ✅ Project **builds successfully**
-- ✅ Include **README file** with:
-  -  Tech stack
-  -  Features
-  -  API endpoints
-  -  App flow / screenshots
-
+---
 ## 🧪 Testing
+- Implemented **unit tests** for:
+  - **ViewModels** – verifying UI state and logic
+  - **UseCases** – verifying business logic
+- Tests written using **JUnit** and **MockK** for mocking dependencies.
 
+---
+## ⚠️ Assumptions / Shortcuts / Trade-offs
 
+- Predefined genre tabs instead of dynamic API fetching to save development time.
+- Local search filters results without hitting the API to reduce network calls.
+- Pagination limited to 20 items per page.
+- Offline-first caching assumes Room has at least one successful API fetch.
+
+---
 ## 🗂️ Project Modules
 
 ### 1. **App Module**
